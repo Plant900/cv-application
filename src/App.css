@@ -1,38 +1,230 @@
 .App {
-  text-align: center;
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.title {
+	font-size: 50px;
+
+	margin-top: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.divider {
+	width: 100%;
+
+	border-top: 1px solid #bbb;
+	border-radius: 5px;
+
+	margin-top: -10px;
+	margin-bottom: 35px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.MainForm {
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: flex-start;
+
+	border-style: solid;
+	border-width: 1px;
+	border-color: lightgray;
+	border-radius: 10px;
+
+	width: 500px;
+
+	padding: 50px;
+
+	margin-top: 50px;
+
+	box-shadow: 5px 10px 10px rgba(119, 119, 119, 0.116);
+
+	list-style-type: none;
 }
 
-.App-link {
-  color: #61dafb;
+.MainInfoItems {
+	display: flex;
+	flex-direction: column;
+
+	gap: 5px;
+
+	font-size: 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.MainInfoItem {
+	cursor: pointer;
+
+	border-style: solid;
+	border-color: lightgray;
+	border-radius: 10px;
+	border-width: 1px;
+	padding: 10px;
+}
+
+.EduInfoCards {
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: flex-start;
+
+	width: 400px;
+
+	gap: 20px;
+}
+
+.EduInfoCard {
+	position: relative;
+
+	display: flex;
+	flex-flow: column nowrap;
+
+	width: 100%;
+
+	background-color: rgba(223, 223, 223, 0.788);
+
+	padding: 15px;
+
+	gap: 8px;
+
+	border-radius: 3px;
+}
+
+.eduDeleteBtn::before {
+	content: "✕";
+	padding: 3px;
+}
+
+.eduDeleteBtn:hover {
+	color: rgb(201, 62, 62);
+	background-color: rgb(206, 205, 205);
+	border-radius: 5px;
+}
+
+.eduDeleteBtn {
+	display: inline-block;
+	position: absolute;
+	top: 0;
+	right: 0;
+
+	margin: 5px;
+
+	cursor: pointer;
+}
+
+.EduInfoEditing {
+	display: flex;
+	flex-flow: column nowrap;
+
+	margin-top: 35px;
+
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 10px;
+	border-color: lightgray;
+
+	padding: 10px;
+	gap: 5px;
+}
+
+.workDeleteBtn::before {
+	content: "✕";
+	padding: 3px;
+}
+
+.workDeleteBtn:hover {
+	color: rgb(201, 62, 62);
+	background-color: rgb(206, 205, 205);
+	border-radius: 5px;
+}
+
+.workDeleteBtn {
+	display: inline-block;
+	position: absolute;
+	top: 0;
+	right: 0;
+
+	margin: 5px;
+
+	cursor: pointer;
+}
+
+.infoHeader {
+	display: flex;
+	flex-direction: row;
+
+	align-items: center;
+	gap: 20px;
+
+	margin-bottom: -20px;
+}
+
+.addItemButton {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	padding-bottom: 2px;
+
+	width: 20px;
+	height: 20px;
+
+	font-weight: bold;
+	font-size: 20px;
+
+	background-color: transparent;
+	border-style: none;
+}
+
+.addItemButton:hover {
+	cursor: pointer;
+
+	background-color: gray;
+	border-radius: 4px;
+}
+
+.infoSection {
+	display: flex;
+	flex-flow: column nowrap;
+
+	gap: 20px;
+
+	margin-top: 35px;
+}
+
+.WorkInfoCards {
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: flex-start;
+
+	width: 400px;
+
+	gap: 20px;
+}
+
+.WorkInfoCard {
+	position: relative;
+
+	display: flex;
+	flex-flow: column nowrap;
+
+	width: 100%;
+
+	background-color: rgba(223, 223, 223, 0.788);
+
+	padding: 15px;
+
+	border-radius: 3px;
+}
+
+.WorkInfoEditing {
+	display: flex;
+	flex-flow: column nowrap;
+
+	margin-top: 35px;
+
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 10px;
+	border-color: lightgray;
+
+	padding: 10px;
+	gap: 5px;
 }
