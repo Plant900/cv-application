@@ -1,24 +1,16 @@
 import React, { Component } from "react"
 import EditField from "./EditField"
 
-// class MainInfo extends Component {
-// 	constructor(props) {
-// 		super(props)
-// 	}
-
-// 	render() {
-// 		return <div>{this.props.item}</div>
-// 	}
-// }
-
 const MainInfo = (props) => {
 	return (
 		<div className="MainInfoItems">
-			{props.mainInfo.map((item) => {
+			{props.mainInfo.map((item, index) => {
 				if (!item.editing) {
 					return (
 						<li
-							className="MainInfoItem"
+							className={`MainInfoItem ${
+								index == 0 ? "MainInfoName" : ""
+							}`}
 							id={item.id}
 							onClick={() =>
 								props.toggleEditing(item.id, "mainInfo")

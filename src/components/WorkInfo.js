@@ -11,6 +11,7 @@ class WorkInfo extends Component {
 				jobTitleValue: "",
 				startDateValue: "",
 				endDateValue: "",
+				isOngoing: false,
 				descriptionValue: "",
 			},
 			editing: false,
@@ -19,6 +20,7 @@ class WorkInfo extends Component {
 		this.toggleEditing = this.toggleEditing.bind(this)
 		this.handleEditSubmit = this.handleEditSubmit.bind(this)
 		this.handleInputChange = this.handleInputChange.bind(this)
+		this.toggleOngoing = this.toggleOngoing.bind(this)
 	}
 
 	toggleEditing() {
@@ -66,43 +68,59 @@ class WorkInfo extends Component {
 		}
 	}
 
+	toggleOngoing() {
+		this.setState({
+			info: {
+				...this.state.info,
+				endDateValue: "Present",
+				isOngoing: !this.state.info.isOngoing,
+			},
+		})
+	}
+
 	render() {
 		if (!this.state.editing) {
 			return (
 				<div className="infoSection">
 					<div className="infoHeader">
 						<h2>Work Experience</h2>
-						<button
-							className="addItemButton"
-							onClick={this.toggleEditing}
-						>
-							+
-						</button>
+						{this.props.isPreviewing ? (
+							""
+						) : (
+							<button
+								className="addItemButton"
+								onClick={this.toggleEditing}
+							>
+								+
+							</button>
+						)}
 					</div>
 					<div className="WorkInfoCards">
 						{this.props.workInfo.map((item) => {
 							return (
 								<div className="WorkInfoCard">
-									<span
-										className="workDeleteBtn"
-										onClick={() =>
-											this.props.deleteWorkInfo(item.id)
-										}
-									></span>
+									{this.props.isPreviewing ? (
+										""
+									) : (
+										<span
+											className="workDeleteBtn"
+											onClick={() =>
+												this.props.deleteWorkInfo(
+													item.id
+												)
+											}
+										></span>
+									)}
+
 									<h3 className="WorkInfoJobTitle">
-										{item.jobTitleValue}
+										{item.jobTitleValue} at{" "}
+										{item.companyValue}
 									</h3>
-									<div className="WorkInfoCompany">
-										Company: <div>{item.companyValue}</div>
-									</div>
-									<div>Start date: {item.startDateValue}</div>
-									<div>End date: {item.endDateValue}</div>
 									<div>
-										{" "}
-										Description: {
-											item.descriptionValue
-										}{" "}
+										{item.startDateValue} to{" "}
+										{item.endDateValue}
 									</div>
+									<div> {item.descriptionValue} </div>
 								</div>
 							)
 						})}
@@ -129,20 +147,39 @@ class WorkInfo extends Component {
 						onChange={this.handleInputChange}
 						required
 					/>
-					<label htmlFor="startDate">Start Date</label>
-					<input
-						type="text"
-						id="startDate"
-						onChange={this.handleInputChange}
-						required
-					/>
-					<label htmlFor="endDate">End Date</label>
-					<input
-						type="text"
-						id="endDate"
-						onChange={this.handleInputChange}
-						required
-					/>
+					<div className="WorkInfoDates">
+						<label htmlFor="startDate">Start Date</label>
+						<input
+							type="date"
+							id="startDate"
+							onChange={this.handleInputChange}
+							required
+						/>
+						{!this.state.info.isOngoing ? (
+							<div>
+								<label htmlFor="endDate">End Date</label>
+								<input
+									type="date"
+									id="endDate"
+									onChange={this.handleInputChange}
+									required
+								/>
+							</div>
+						) : (
+							""
+						)}
+						<button
+							onClick={this.toggleOngoing}
+							className={`isOngoingBtn ${
+								this.state.info.isOngoing
+									? "ongoingTrue"
+									: "ongoingFalse"
+							}`}
+						>
+							Present
+						</button>
+					</div>
+
 					<label htmlFor="description">Description</label>
 					<input
 						type="text"

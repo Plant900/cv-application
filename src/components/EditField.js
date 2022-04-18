@@ -32,13 +32,14 @@ class EditField extends Component {
 
 	render() {
 		return (
-			<>
+			<div className="EditField">
 				<input
 					placeholder={this.props.item.text}
 					onChange={this.handleChange}
 					required
 				></input>
 				<button
+					className="EditFieldBtn"
 					onClick={() =>
 						this.props.updateItem(
 							this.state.value,
@@ -46,10 +47,8 @@ class EditField extends Component {
 							"mainInfo"
 						)
 					}
-				>
-					Submit
-				</button>
-			</>
+				></button>
+			</div>
 		)
 	}
 }

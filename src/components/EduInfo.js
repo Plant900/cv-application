@@ -10,6 +10,7 @@ class EduInfo extends Component {
 				institutionValue: "",
 				startDateValue: "",
 				endDateValue: "",
+				isOngoing: false,
 				qualificationValue: "",
 			},
 			editing: false,
@@ -18,6 +19,7 @@ class EduInfo extends Component {
 		this.toggleEditing = this.toggleEditing.bind(this)
 		this.handleEditSubmit = this.handleEditSubmit.bind(this)
 		this.handleInputChange = this.handleInputChange.bind(this)
+		this.toggleOngoing = this.toggleOngoing.bind(this)
 	}
 
 	toggleEditing() {
@@ -60,41 +62,60 @@ class EduInfo extends Component {
 		})
 	}
 
+	toggleOngoing() {
+		this.setState({
+			info: {
+				...this.state.info,
+				endDateValue: "Present",
+				isOngoing: !this.state.info.isOngoing,
+			},
+		})
+	}
+
 	render() {
 		if (!this.state.editing) {
 			return (
 				<div className="infoSection">
 					<div className="infoHeader">
 						<h2>Educational Experience</h2>{" "}
-						<button
-							className="addItemButton"
-							onClick={this.toggleEditing}
-						>
-							+
-						</button>
+						{this.props.isPreviewing ? (
+							""
+						) : (
+							<button
+								className="addItemButton"
+								onClick={this.toggleEditing}
+							>
+								+
+							</button>
+						)}
 					</div>
 
 					<div className="EduInfoCards">
 						{this.props.eduInfo.map((item) => {
 							return (
 								<div className="EduInfoCard">
-									<span
-										className="eduDeleteBtn"
-										onClick={() =>
-											this.props.deleteEduInfo(item.id)
-										}
-									></span>
+									{this.props.isPreviewing ? (
+										""
+									) : (
+										<span
+											className="eduDeleteBtn"
+											onClick={() =>
+												this.props.deleteEduInfo(
+													item.id
+												)
+											}
+										></span>
+									)}
+
+									<h3 className="EduInfoCardTitle">
+										{item.institutionValue}
+									</h3>
 									<div>
-										Institution: {item.institutionValue}
+										{item.startDateValue} to{" "}
+										{item.endDateValue}
 									</div>
-									<div>Start date: {item.startDateValue}</div>
-									<div>End date: {item.endDateValue}</div>
-									<div>
-										{" "}
-										Qualification: {
-											item.qualificationValue
-										}{" "}
-									</div>
+
+									<div>{item.qualificationValue}</div>
 								</div>
 							)
 						})}
@@ -115,20 +136,39 @@ class EduInfo extends Component {
 						onChange={this.handleInputChange}
 						required
 					/>
-					<label htmlFor="startDate">Start date</label>
-					<input
-						type="date"
-						id="startDate"
-						onChange={this.handleInputChange}
-						required
-					/>
-					<label htmlFor="endDate">End date</label>
-					<input
-						type="date"
-						id="endDate"
-						onChange={this.handleInputChange}
-						required
-					/>
+					<div className="EduInfoDates">
+						<label htmlFor="startDate">From</label>
+						<input
+							type="date"
+							id="startDate"
+							onChange={this.handleInputChange}
+							required
+						/>
+						{!this.state.info.isOngoing ? (
+							<div>
+								<label htmlFor="endDate"> To </label>
+								<input
+									type="date"
+									id="endDate"
+									onChange={this.handleInputChange}
+									required
+								/>
+							</div>
+						) : (
+							""
+						)}
+
+						<button
+							onClick={this.toggleOngoing}
+							className={`isOngoingBtn ${
+								this.state.info.isOngoing
+									? "ongoingTrue"
+									: "ongoingFalse"
+							}`}
+						>
+							Present
+						</button>
+					</div>
 					<label htmlFor="qualification">Qualification</label>
 					<input
 						type="text"

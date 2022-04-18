@@ -9,8 +9,6 @@ class MainForm extends Component {
 		super()
 
 		this.state = {
-			item: { editing: false, text: "", id: uniqid() },
-			items: [],
 			mainInfo: [
 				{ text: "Name:", id: uniqid(), editing: false },
 				{ text: "Email: ", id: uniqid(), editing: false },
@@ -18,6 +16,7 @@ class MainForm extends Component {
 			],
 			eduInfo: [],
 			workInfo: [],
+			isPreviewing: false,
 		}
 
 		this.toggleEditing = this.toggleEditing.bind(this)
@@ -26,6 +25,7 @@ class MainForm extends Component {
 		this.deleteEduInfo = this.deleteEduInfo.bind(this)
 		this.addWorkInfo = this.addWorkInfo.bind(this)
 		this.deleteWorkInfo = this.deleteWorkInfo.bind(this)
+		this.togglePreview = this.togglePreview.bind(this)
 	}
 
 	updateItem(newText, id, section) {
@@ -78,26 +78,41 @@ class MainForm extends Component {
 		})
 	}
 
+	togglePreview() {
+		this.setState({
+			isPreviewing: !this.state.isPreviewing,
+		})
+	}
+
 	render() {
 		return (
-			<div className="MainForm">
+			<div>
 				<h1 className="title">CV Creator</h1>
 				<hr className="divider" />
-				<MainInfo
-					mainInfo={this.state.mainInfo}
-					toggleEditing={this.toggleEditing}
-					updateItem={this.updateItem}
-				/>
-				<EduInfo
-					eduInfo={this.state.eduInfo}
-					addEduInfo={this.addEduInfo}
-					deleteEduInfo={this.deleteEduInfo}
-				/>
-				<WorkInfo
-					workInfo={this.state.workInfo}
-					addWorkInfo={this.addWorkInfo}
-					deleteWorkInfo={this.deleteWorkInfo}
-				/>
+				<div className="viewButtonContainer">
+					<button onClick={this.togglePreview} className="viewButton">
+						Toggle Edit
+					</button>
+				</div>
+				<div className="MainForm">
+					<MainInfo
+						mainInfo={this.state.mainInfo}
+						toggleEditing={this.toggleEditing}
+						updateItem={this.updateItem}
+					/>
+					<EduInfo
+						eduInfo={this.state.eduInfo}
+						isPreviewing={this.state.isPreviewing}
+						addEduInfo={this.addEduInfo}
+						deleteEduInfo={this.deleteEduInfo}
+					/>
+					<WorkInfo
+						workInfo={this.state.workInfo}
+						isPreviewing={this.state.isPreviewing}
+						addWorkInfo={this.addWorkInfo}
+						deleteWorkInfo={this.deleteWorkInfo}
+					/>
+				</div>
 			</div>
 		)
 	}
