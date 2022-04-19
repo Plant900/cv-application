@@ -7,7 +7,7 @@
 .title {
 	font-size: 50px;
 
-	margin-top: 0;
+	margin-top: 20px;
 }
 
 .divider {
@@ -17,7 +17,15 @@
 	border-radius: 5px;
 
 	margin-top: -10px;
-	margin-bottom: 35px;
+	margin-bottom: 20px;
+}
+
+.viewButton {
+	cursor: pointer;
+
+	width: 100px;
+	font-size: 15px;
+	padding: 0;
 }
 
 .MainForm {
@@ -34,7 +42,7 @@
 
 	padding: 50px;
 
-	margin-top: 50px;
+	margin-top: 30px;
 
 	box-shadow: 5px 10px 10px rgba(119, 119, 119, 0.116);
 
@@ -45,7 +53,7 @@
 	display: flex;
 	flex-direction: column;
 
-	gap: 5px;
+	gap: 0px;
 
 	font-size: 20px;
 }
@@ -53,11 +61,33 @@
 .MainInfoItem {
 	cursor: pointer;
 
-	border-style: solid;
+	border-style: none;
 	border-color: lightgray;
 	border-radius: 10px;
 	border-width: 1px;
-	padding: 10px;
+	padding: 3px;
+}
+
+.MainInfoName {
+	font-size: 40px;
+	font-weight: bold;
+}
+
+.EditField {
+	display: flex;
+}
+
+.EditFieldBtn {
+	cursor: pointer;
+
+	font-size: 20px;
+
+	border-style: none;
+	background-color: transparent;
+}
+
+.EditFieldBtn:before {
+	content: "✔";
 }
 
 .EduInfoCards {
@@ -85,6 +115,19 @@
 	gap: 8px;
 
 	border-radius: 3px;
+}
+
+.EduInfoCardTitle {
+	margin: 0;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.EduInfoDates {
+	display: flex;
+	flex-flow: row nowrap;
+
+	gap: 10px;
 }
 
 .eduDeleteBtn::before {
@@ -122,6 +165,30 @@
 
 	padding: 10px;
 	gap: 5px;
+}
+
+.EduInfoEditingHeader {
+	margin: 0;
+	margin-bottom: 15px;
+}
+
+.isOngoingBtn {
+	cursor: pointer;
+
+	border-style: none;
+	border-radius: 3px;
+
+	color: white;
+
+	font-weight: bold;
+}
+
+.ongoingTrue {
+	background-color: rgba(44, 139, 44, 0.582);
+}
+
+.ongoingFalse {
+	background-color: rgba(172, 18, 18, 0.534);
 }
 
 .workDeleteBtn::before {
@@ -210,8 +277,22 @@
 	background-color: rgba(223, 223, 223, 0.788);
 
 	padding: 15px;
+	gap: 8px;
 
 	border-radius: 3px;
+}
+
+.WorkInfoJobTitle {
+	font-size: 20px;
+
+	margin: 0;
+}
+
+.WorkInfoDates {
+	display: flex;
+	flex-flow: row nowrap;
+
+	gap: 10px;
 }
 
 .WorkInfoEditing {
@@ -227,4 +308,38 @@
 
 	padding: 10px;
 	gap: 5px;
+}
+
+.WorkInfoEditingHeader {
+	margin: 0;
+	margin-bottom: 15px;
+}
+
+.InfoEditingBtnContainer {
+	display: flex;
+	flex-direction: row;
+
+	justify-content: center;
+	gap: 5px;
+}
+
+.InfoEditingBtn {
+	cursor: pointer;
+
+	font-weight: bold;
+	font-size: 12px;
+
+	padding: 5px;
+
+	border-radius: 5px;
+	border-style: solid;
+	border-color: rgb(190, 190, 190);
+	border-width: 20px;
+
+	background-color: rgb(190, 190, 190);
+	border-style: none;
+}
+
+.InfoEditingBtn:hover {
+	background-color: rgb(119, 119, 119);
 }
