@@ -133,6 +133,9 @@ class WorkInfo extends Component {
 					className="WorkInfoEditing"
 					onSubmit={this.handleEditSubmit}
 				>
+					<h2 className="WorkInfoEditingHeader">
+						Add Work Experience
+					</h2>
 					<label htmlFor="company">Company</label>
 					<input
 						type="text"
@@ -188,8 +191,17 @@ class WorkInfo extends Component {
 						required
 					/>
 
-					<button type="submit">Submit</button>
-					<button onClick={this.toggleEditing}>Cancel</button>
+					<div className="InfoEditingBtnContainer">
+						<button className="InfoEditingBtn" type="submit">
+							Submit
+						</button>
+						<button
+							className="InfoEditingBtn"
+							onClick={this.toggleEditing}
+						>
+							Cancel
+						</button>
+					</div>
 				</form>
 			)
 		}

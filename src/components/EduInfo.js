@@ -129,6 +129,9 @@ class EduInfo extends Component {
 					className="EduInfoEditing"
 					onSubmit={this.handleEditSubmit}
 				>
+					<h2 className="EduInfoEditingHeader">
+						Add Educational Experience
+					</h2>
 					<label htmlFor="institution">Institution</label>
 					<input
 						type="text"
@@ -176,9 +179,17 @@ class EduInfo extends Component {
 						onChange={this.handleInputChange}
 						required
 					/>
-
-					<button type="submit">Submit</button>
-					<button onClick={this.toggleEditing}>Cancel</button>
+					<div className="InfoEditingBtnContainer">
+						<button className="InfoEditingBtn" type="submit">
+							Submit
+						</button>
+						<button
+							className="InfoEditingBtn"
+							onClick={this.toggleEditing}
+						>
+							Cancel
+						</button>
+					</div>
 				</form>
 			)
 		}
