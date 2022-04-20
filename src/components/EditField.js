@@ -1,56 +1,68 @@
 import React, { Component } from "react"
+import { useState, useEffect } from "react"
 
-// const EditField = (props) => {
-// 	return (
-// 		<>
-// 			<input placeholder={props.item.text}></input>
-// 			<button
-// 				onClick={() =>
-// 					props.updateItem("maggot", props.item.id, "mainInfo")
-// 				}
-// 			></button>
-// 		</>
-// 	)
-// }
+function EditField(props) {
+	const [value, setValue] = useState("")
 
-class EditField extends Component {
-	constructor(props) {
-		super(props)
-
-		this.state = {
-			value: "",
-		}
-
-		this.handleChange = this.handleChange.bind(this)
+	let handleChange = (e) => {
+		setValue(e.target.value)
 	}
 
-	handleChange(e) {
-		this.setState({
-			value: e.target.value,
-		})
-	}
-
-	render() {
-		return (
-			<div className="EditField">
-				<input
-					placeholder={this.props.item.text}
-					onChange={this.handleChange}
-					required
-				></input>
-				<button
-					className="EditFieldBtn"
-					onClick={() =>
-						this.props.updateItem(
-							this.state.value,
-							this.props.item.id,
-							"mainInfo"
-						)
-					}
-				></button>
-			</div>
-		)
-	}
+	return (
+		<div className="EditField">
+			<input
+				placeholder={props.item.text}
+				onChange={handleChange}
+				required
+			></input>
+			<button
+				className="EditFieldBtn"
+				onClick={() =>
+					props.updateItem(value, props.item.id, "mainInfo")
+				}
+			></button>
+		</div>
+	)
 }
 
 export default EditField
+
+// class EditFieldz extends Component {
+// 	constructor(props) {
+// 		super(props)
+
+// 		this.state = {
+// 			value: "",
+// 		}
+
+// 		this.handleChange = this.handleChange.bind(this)
+// 	}
+
+// 	handleChange(e) {
+// 		this.setState({
+// 			value: e.target.value,
+// 		})
+// 	}
+
+// 	render() {
+// 		return (
+// 			<div className="EditField">
+// 				<input
+// 					placeholder={this.props.item.text}
+// 					onChange={this.handleChange}
+// 					required
+// 				></input>
+// 				<button
+// 					className="EditFieldBtn"
+// 					onClick={() =>
+// 						this.props.updateItem(
+// 							this.state.value,
+// 							this.props.item.id,
+// 							"mainInfo"
+// 						)
+// 					}
+// 				></button>
+// 			</div>
+// 		)
+// 	}
+// }

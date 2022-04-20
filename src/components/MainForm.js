@@ -1,10 +1,100 @@
 import React, { Component } from "react"
+import { useState, useEffect } from "react"
 import uniqid from "uniqid"
 import MainInfo from "./MainInfo"
 import EduInfo from "./EduInfo"
 import WorkInfo from "./WorkInfo"
 
-class MainForm extends Component {
+function MainForm() {
+	const [mainInfo, setMainInfo] = useState([
+		{ text: "Name:", id: uniqid(), editing: false },
+		{ text: "Email: ", id: uniqid(), editing: false },
+		{ text: "Phone number:", id: uniqid(), editing: false },
+	])
+	const [eduInfo, setEduInfo] = useState([])
+	const [workInfo, setWorkInfo] = useState([])
+	const [isPreviewing, setIsPreviewing] = useState(false)
+
+	let updateItem = (newText, id, section) => {
+		if (newText.length > 0) {
+			setMainInfo(
+				mainInfo.map((item) => {
+					if (item.id === id) {
+						item.text = newText
+						item.editing = false
+					}
+					return item
+				})
+			)
+		}
+	}
+
+	let toggleEditing = (id, section) => {
+		setMainInfo(
+			mainInfo.map((item) => {
+				if (item.id === id) {
+					item.editing = true
+				}
+				return item
+			})
+		)
+	}
+
+	let addEduInfo = (info) => {
+		setEduInfo(eduInfo.concat(info))
+	}
+
+	let deleteEduInfo = (id) => {
+		setEduInfo(eduInfo.filter((item) => item.id !== id))
+	}
+
+	let addWorkInfo = (info) => {
+		setWorkInfo(workInfo.concat(info))
+	}
+
+	let deleteWorkInfo = (id) => {
+		setWorkInfo(workInfo.filter((item) => item.id !== id))
+	}
+
+	let togglePreview = () => {
+		setIsPreviewing(!isPreviewing)
+	}
+
+	return (
+		<div>
+			<h1 className="title">CV Creator</h1>
+			<hr className="divider" />
+			<div className="viewButtonContainer">
+				<button onClick={togglePreview} className="viewButton">
+					Toggle Edit
+				</button>
+			</div>
+			<div className="MainForm">
+				<MainInfo
+					mainInfo={mainInfo}
+					toggleEditing={toggleEditing}
+					updateItem={updateItem}
+				/>
+				<EduInfo
+					eduInfo={eduInfo}
+					isPreviewing={isPreviewing}
+					addEduInfo={addEduInfo}
+					deleteEduInfo={deleteEduInfo}
+				/>
+				<WorkInfo
+					workInfo={workInfo}
+					isPreviewing={isPreviewing}
+					addWorkInfo={addWorkInfo}
+					deleteWorkInfo={deleteWorkInfo}
+				/>
+			</div>
+		</div>
+	)
+}
+
+export default MainForm
+
+class MainFormz extends Component {
 	constructor() {
 		super()
 
@@ -117,5 +207,3 @@ class MainForm extends Component {
 		)
 	}
 }
-
-export default MainForm
